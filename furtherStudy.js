@@ -7,3 +7,4 @@ function wordsInCommon(words1, words2) {
 function kidsGame(names) {
   // Replace this with your code
 }
+   
