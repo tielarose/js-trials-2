@@ -16,9 +16,34 @@ function wordsInCommon(words1, words2) {
 }
 
 function kidsGame(names) {
-  const output = [names[0]];
+  const output = [names.shift()];
 
-  console.log(output);
+  const firstLetterToWords = {};
+
+  for (const name of names) {
+    const letter = name[0];
+    if (letter in firstLetterToWords) {
+      firstLetterToWords[letter].push(name);
+    } else {
+      firstLetterToWords[letter] = [name];
+    }
+  }
+
+  while (true) {
+    let currWord = output.slice(-1)[0];
+    let lastIndex = currWord.length - 1;
+    let startLetter = currWord.charAt(lastIndex);
+
+    if (
+      startLetter in firstLetterToWords &&
+      firstLetterToWords[startLetter].length !== 0
+    ) {
+      const word = firstLetterToWords[startLetter].shift();
+      output.push(word);
+    } else {
+      break;
+    }
+  }
+
+  return output;
 }
-
-console.log(kidsGame[("apple", "berry", "cherry")]);
